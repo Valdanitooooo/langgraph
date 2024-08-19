@@ -520,6 +520,8 @@ class CompiledStateGraph(CompiledGraph):
                 return SKIP_WRITE
             elif isinstance(input, dict):
                 return input.get(key, SKIP_WRITE)
+            elif isinstance(input, list):
+                return input
             elif get_type_hints(type(input)):
                 value = getattr(input, key, SKIP_WRITE)
                 return value if value is not None else SKIP_WRITE
